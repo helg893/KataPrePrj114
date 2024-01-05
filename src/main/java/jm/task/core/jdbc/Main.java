@@ -8,8 +8,6 @@ public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
     	
-    	//новая ветка под задание 115
-
         UserService userService = new UserServiceImpl();
         userService.createUsersTable();
         userService.saveUser("Chuck", "Norris", (byte) 44);
@@ -19,6 +17,6 @@ public class Main {
         userService.getAllUsers().forEach(System.out::println);
         userService.cleanUsersTable();
         userService.dropUsersTable();
-
+    	
     }
 }

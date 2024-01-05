@@ -12,9 +12,9 @@ public class UserDaoJDBCImpl implements UserDao {
     private static final String SQL_QUERY_SAVE_USER = "INSERT INTO users (name, lastName, age) VALUES (?, ?, ?) ";
     private static final String SQL_QUERY_REMOVE_USER = "DELETE FROM users WHERE id=?";
     private static final String SQL_QUERY_CLEAN_USERS = "DELETE FROM users";
-    private static final String SQL_QUERY_DROP_USERS = "DROP TABLE users";
+    private static final String SQL_QUERY_DROP_USERS = "DROP TABLE if exists users";
     private static final String SQL_QUERY_CREATE_USERS = """
-            CREATE TABLE `users` (
+            CREATE TABLE if not exists `users` (
               `id` INT NOT NULL AUTO_INCREMENT,
               `name` VARCHAR(45) NOT NULL,
               `lastName` VARCHAR(45) NOT NULL,
@@ -92,7 +92,7 @@ public class UserDaoJDBCImpl implements UserDao {
              Statement stmt = conn.createStatement()) {
             stmt.executeUpdate(SQL_QUERY_CLEAN_USERS);
         } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("clean table error: " + e);
+            System.out.println("clean users table error: " + e);
         }
     }
 }
